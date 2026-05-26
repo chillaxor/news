@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI HOT 晨报 · 2026年5月26日</title>
+<style>
+:root {
+  --gradient-start: #FF6B35;
+  --gradient-mid: #E8453C;
+  --gradient-end: #C62828;
+  --bg: #FFF5F0;
+  --card-bg: #FFFFFF;
+  --text: #2D1B14;
+  --text-secondary: #6B4C3F;
+  --text-muted: #9B7B6F;
+  --border: #F0D5C8;
+  --accent: #E8453C;
+  --accent-light: #FFF0EC;
+  --shadow: 0 2px 12px rgba(232, 69, 60, 0.08);
+  --shadow-hover: 0 6px 24px rgba(232, 69, 60, 0.15);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "Fira Code", monospace;
+  --max-width: 1200px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+  color: #fff;
+  padding: 60px 24px 72px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%),
+              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  animation: heroShimmer 8s ease-in-out infinite;
+}
+@keyframes heroShimmer {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-2%, 2%); }
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 99px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+.hero-badge .dot {
+  width: 7px; height: 7px;
+  background: #4ADE80;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.8); }
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.hero .subtitle {
+  font-size: clamp(14px, 2vw, 18px);
+  opacity: 0.85;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+/* Stats row */
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.stat-chip {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 12px 20px;
+  min-width: 90px;
+  transition: transform 0.2s, background 0.2s;
+}
+.stat-chip:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-2px);
+}
+.stat-chip .num {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+.stat-chip .label {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* ===== NAV ===== */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 16px;
+}
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 10px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.nav-link:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.nav-link .nav-count {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 99px;
+  padding: 1px 7px;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ===== MAIN ===== */
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+.section {
+  margin-bottom: 48px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+.section-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.section-icon.models { background: #FFF0EC; }
+.section-icon.products { background: #FFF3E0; }
+.section-icon.industry { background: #FFF8E1; }
+.section-icon.paper { background: #E8F5E9; }
+.section-icon.tip { background: #EDE7F6; }
+.section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ===== CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+}
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 4px 0 0 4px;
+}
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.card-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.5;
+  flex: 1;
+}
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.card-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: #F5F0ED;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-weight: 500;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-time {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.card-summary {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  background: var(--accent-light);
+  transition: all 0.2s;
+}
+.card-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.card-link svg {
+  width: 14px; height: 14px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 32px 20px 40px;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.footer strong { color: var(--text-secondary); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero { padding: 40px 16px 52px; }
+  .cards { grid-template-columns: 1fr; }
+  .stat-chip { padding: 10px 14px; min-width: 70px; }
+  .stat-chip .num { font-size: 22px; }
+  .nav-inner { justify-content: flex-start; }
+}
+@media (max-width: 400px) {
+  .hero h1 { font-size: 24px; }
+  .card { padding: 16px 18px; }
+}
+
+/* ===== ANIMATION DELAYS ===== */
+.card:nth-child(1) { transition-delay: 0.00s; }
+.card:nth-child(2) { transition-delay: 0.05s; }
+.card:nth-child(3) { transition-delay: 0.10s; }
+.card:nth-child(4) { transition-delay: 0.15s; }
+.card:nth-child(5) { transition-delay: 0.20s; }
+.card:nth-child(6) { transition-delay: 0.25s; }
+.card:nth-child(7) { transition-delay: 0.30s; }
+.card:nth-child(8) { transition-delay: 0.35s; }
+.card:nth-child(9) { transition-delay: 0.40s; }
+.card:nth-child(10) { transition-delay: 0.45s; }
+.card:nth-child(11) { transition-delay: 0.50s; }
+.card:nth-child(12) { transition-delay: 0.55s; }
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span> AI HOT 每日晨报
+    </div>
+    <h1>2026 年 5 月 26 日 · 星期二</h1>
+    <p class="subtitle">生成于北京时间 08:00 ｜ 覆盖 5月25日 ~ 5月26日 AI 资讯</p>
+    <div class="stats-row">
+      <div class="stat-chip">
+        <div class="num">11</div>
+        <div class="label">📰 总条数</div>
+      </div>
+      <div class="stat-chip">
+        <div class="num">1</div>
+        <div class="label">🤖 模型</div>
+      </div>
+      <div class="stat-chip">
+        <div class="num">2</div>
+        <div class="label">🚀 产品</div>
+      </div>
+      <div class="stat-chip">
+        <div class="num">4</div>
+        <div class="label">🏭 行业</div>
+      </div>
+      <div class="stat-chip">
+        <div class="num">2</div>
+        <div class="label">📄 论文</div>
+      </div>
+      <div class="stat-chip">
+        <div class="num">2</div>
+        <div class="label">💡 技巧</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== NAV ========== -->
+<nav class="nav-bar" id="nav">
+  <div class="nav-inner">
+    <a href="#sec-models" class="nav-link">🤖 模型<span class="nav-count">1</span></a>
+    <a href="#sec-products" class="nav-link">🚀 产品<span class="nav-count">2</span></a>
+    <a href="#sec-industry" class="nav-link">🏭 行业<span class="nav-count">4</span></a>
+    <a href="#sec-paper" class="nav-link">📄 论文<span class="nav-count">2</span></a>
+    <a href="#sec-tip" class="nav-link">💡 技巧<span class="nav-count">2</span></a>
+  </div>
+</nav>
+
+<!-- ========== MAIN ========== -->
+<main class="main">
+
+<!-- 模型发布/更新 — 1 item -->
+<section class="section" id="sec-models">
+  <div class="section-header">
+    <div class="section-icon models">🤖</div>
+    <h2>模型发布 / 更新</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">1</span>
+        <span class="card-title">面壁智能联合清华等开源中国首个基于华为昇腾训练的 1.58-bit 端侧大模型 BitCPM-CANN</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 IT之家</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">面壁智能联手清华开源中国首个昇腾原生 1.58-bit 端侧大模型，为国产芯片生态注入重磅开源力量。</div>
+      <a class="card-link" href="https://www.ithome.com/0/954/759.htm" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 产品发布/更新 — 2 items -->
+<section class="section" id="sec-products">
+  <div class="section-header">
+    <div class="section-icon products">🚀</div>
+    <h2>产品发布 / 更新</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">2</span>
+        <span class="card-title">Grok Build Beta 版向 SuperGrok 用户开放</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 X：xAI</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">SuperGrok 与 X Premium+ 用户可用 Plan Mode 构建自动化流程，搭配 Imagine 生成图像视频。</div>
+      <a class="card-link" href="https://x.com/xai/status/2058973760708091907" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">3</span>
+        <span class="card-title">Qwen3.7-Max 隐式缓存功能上线</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 X：通义千问</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">隐式缓存自动启用无需配置，开箱即用更快更便宜；需要更高命中率可升级为显式缓存。</div>
+      <a class="card-link" href="https://x.com/Alibaba_Qwen/status/2058932656797368619" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 行业动态 — 4 items -->
+<section class="section" id="sec-industry">
+  <div class="section-header">
+    <div class="section-icon industry">🏭</div>
+    <h2>行业动态</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">4</span>
+        <span class="card-title">苹果据称正使用定制版 1.2T 参数 Google 模型重塑下一代 Siri</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 X：Kim</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">苹果采用定制 1.2T 参数 Google 大模型驱动 Siri，简单查询本地运行，WWDC 或将官宣整合 Gemini。</div>
+      <a class="card-link" href="https://x.com/kimmonismus/status/2058997271803674991" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">5</span>
+        <span class="card-title">教皇里奥呼吁在 AI 时代保持"深刻的人性"</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 The Verge</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">教皇发布首份 AI 通谕，警告 AI 驱动战争与劳动冲击风险，呼吁建立全球伦理与法律新框架。</div>
+      <a class="card-link" href="https://www.theverge.com/news/936945/pope-leo-letter-encyclical-ai-anthropic-labor-warfare" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">6</span>
+        <span class="card-title">OpenAI GPT-5.6 模型曝下月发布：AI 上下文 150 万 tokens</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 IT之家</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">Codex 日志泄露代号 iris-alpha，支持 150 万 token 上下文窗口，较 GPT-5.5 提升 43%，6 月有望面世。</div>
+      <a class="card-link" href="https://www.ithome.com/0/955/078.htm" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">7</span>
+        <span class="card-title">OpenAI 与巴西两大媒体集团宣布战略内容合作</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 OpenAI 官网</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">OpenAI 携手 Grupo Folha 与 Grupo UOL，将可信巴西新闻内容引入 ChatGPT，确保归属透明。</div>
+      <a class="card-link" href="https://openai.com/index/grupo-folha-grupo-uol-partnership" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 论文研究 — 2 items -->
+<section class="section" id="sec-paper">
+  <div class="section-header">
+    <div class="section-icon paper">📄</div>
+    <h2>论文研究</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">8</span>
+        <span class="card-title">微软 Copilot Cowork 存在文件泄露问题</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 Hacker News</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">安全研究发现微软 Copilot Cowork 存在文件外泄漏洞，提示企业用户关注协作工具安全边界。</div>
+      <a class="card-link" href="https://www.promptarmor.com/resources/microsoft-copilot-cowork-exfiltrates-files" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">9</span>
+        <span class="card-title">华为何庭波"韬定律"论文发布，逻辑折叠技术提升芯片性能</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 IT之家</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">ISCAS 2026 发表逻辑折叠技术，麒麟 2026 晶体管密度提升 53%，能效提高 41%，无需新光刻工艺。</div>
+      <a class="card-link" href="https://www.ithome.com/0/954/778.htm" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 技巧与观点 — 2 items -->
+<section class="section" id="sec-tip">
+  <div class="section-header">
+    <div class="section-icon tip">💡</div>
+    <h2>技巧与观点</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">10</span>
+        <span class="card-title">Anthropic 联合创始人 Chris Olah 在教皇通谕发布会上的讲话</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 Anthropic Newsroom</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">Olah 指出 AI 非工程化构建而是从语言中"生长"出来，呼吁全球公平分享 AI 收益与严肃审视其本质。</div>
+      <a class="card-link" href="https://www.anthropic.com/news/chris-olah-pope-leo-encyclical" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">11</span>
+        <span class="card-title">Harness、Scaffold 与 AI 智能体术语辨析</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-source">📎 Hugging Face Blog</span>
+        <span class="card-time">🕗 5月26日 晨报</span>
+      </div>
+      <div class="card-summary">厘清 Agent = Model + Harness 的心智模型，Scaffolding 定义行为、Harness 执行调用，术语不再混淆。</div>
+      <a class="card-link" href="https://huggingface.co/blog/agent-glossary" target="_blank" rel="noopener noreferrer">
+        阅读原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <p>共 <strong>11</strong> 条资讯，覆盖 5 个版块 ｜ 数据来源：<strong>aihot.virxact.com</strong></p>
+  <p style="margin-top:4px;opacity:0.7;">AI HOT 每日北京时间 08:00 自动生成 ｜ 生成时间：2026-05-26 08:00 CST</p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // --- Intersection Observer for scroll reveal ---
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  cards.forEach(function(card) { observer.observe(card); });
+
+  // --- Active nav highlight on scroll ---
+  var sections = document.querySelectorAll('.section');
+  var navLinks = document.querySelectorAll('.nav-link');
+
+  function updateActiveNav() {
+    var scrollPos = window.scrollY + 120;
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var bottom = top + section.offsetHeight;
+      var id = section.getAttribute('id');
+      var link = document.querySelector('.nav-link[href="#' + id + '"]');
+      if (link) {
+        if (scrollPos >= top && scrollPos < bottom) {
+          link.style.color = 'var(--accent)';
+          link.style.background = 'var(--accent-light)';
+        } else {
+          link.style.color = 'var(--text-secondary)';
+          link.style.background = 'transparent';
+        }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+
+})();
+</script>
+
+</body>
+</html>
